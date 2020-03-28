@@ -1,0 +1,29 @@
+body {
+  font-family: sans-serif;
+  background-color: rgb(247, 247, 247);
+  margin: 0px;
+}
+
+.centerize-container{
+  display: flex;
+  align-items: center; 
+}
+
+.main-container{
+  width: 60%;
+  transition: width 1s;
+}
+
+@media screen and (max-width: 1500px) {
+  /* tablet */
+  .main-container{
+    width: 70%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  /* phone */
+  .main-container{
+    width: 90%;
+  }
+}
