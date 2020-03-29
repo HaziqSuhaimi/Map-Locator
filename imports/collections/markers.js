@@ -10,8 +10,6 @@ Meteor.methods({
             Markers.update({userId:_id},{$push:{markers: data}}, (err, res)=>{
                 if(err){
                     console.log('error', err)
-                }else{
-                    console.log('marker added', res)
                 }
             })
         }else{
@@ -26,6 +24,9 @@ Meteor.methods({
     },
     'fetchPrevMarkers': _id =>{
         return Markers.find({userId:_id}, {fields:{userId:0, _id:0}}).fetch()
+    },
+    'markerResetAll':()=>{
+        Markers.remove({})
     }
 })
 

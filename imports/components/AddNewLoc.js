@@ -4,28 +4,31 @@ import { TextField, Button, Dialog, DialogContent, DialogTitle, Divider } from '
 
 export const AddNewLoc = (props) => {
 
-    const handleAddToMap = () =>{
+    const handleAddToMap = () => {
         const name = document.getElementById('name').value
         const des = document.getElementById('des').value
         const lat = document.getElementById('lat').value
         const long = document.getElementById('long').value
 
-        if(name!=='' && des!=='' && lat!=='' && long!==''){
-            const data = {
-                name,
-                des,
-                lat,
-                long
-            }
-            props.addmarker(data)
-            Meteor.call('insertMarker', data, Meteor.userId(), (err)=>{
-                if(err){
-                    alert(err)
-                }else{
-                    // alert('Marker Added')
+        if (name !== '' && des !== '' && lat !== '' && long !== '') {
+            //make sure both values are in numbers
+            if(isNaN(+lat)===false && isNaN(+long)===false){
+                const data = {
+                    name,
+                    des,
+                    lat:+lat,
+                    long:+long
                 }
-            })
-        }else{
+                props.addmarker(data)
+                Meteor.call('insertMarker', data, Meteor.userId(), (err) => {
+                    if (err) {
+                        alert(err)
+                    }
+                })
+            }else{
+                alert('Make sure both Latitude and Longitude values are in numbers')
+            }
+        } else {
             alert('Please fill in the fields')
         }
     }
@@ -52,7 +55,7 @@ export const AddNewLoc = (props) => {
                     <Button disableElevation
                         style={{
                             marginTop: 30,
-                            marginBottom:30,
+                            marginBottom: 30,
                             backgroundColor: '#ffb82b',
                             color: 'white',
                             borderRadius: 20,

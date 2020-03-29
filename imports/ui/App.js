@@ -54,7 +54,7 @@ export const App = () => {
     const focus = {
       lat: data.lat,
       lng: data.long,
-      zoom: 15
+      zoom: 11
     }
     setLatestMarker(focus)
     setOpenDialog(false)
